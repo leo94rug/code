@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useHistory } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 import classes from './ChangePsw.module.css';
 import { changePassword } from "../../store/auth-action";
@@ -8,7 +8,6 @@ import { useSelector,useDispatch } from "react-redux";
 
 const ChangePsw = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const token = useSelector((state) => state.authSlice.token);
   const newPasswordInputRef = useRef();
 
@@ -21,7 +20,7 @@ const ChangePsw = () => {
       password: enteredNewPassword
     }));
     // add validation
-    history.replace('/')
+    redirect('/')
 
   };
 

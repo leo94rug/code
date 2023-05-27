@@ -17,24 +17,24 @@ export const login = (user) => {
                     },
                   }
             );
-            debugger;
-            if (!response.ok) {
-                throw new Error('Errore nel login!');
-            }
+            //if (!response.ok) {
+            //    throw new Error('Errore nel login!');
+            //}
             const data = await response.json();
             return data;
         }
         try {
             const authData = await sendLoginRequest();
+            //const idToken = authData.idToken;
+            const idToken = 'gadfsfhdsfhsdh';
             dispatch(
                 authReducer.login({
-                    token: authData.idToken
+                    token: idToken
               })
             );
-            debugger;
-            localStorage.setItem('token', authData.idToken);
+            localStorage.setItem('token', idToken);
           } catch (error) {
-            alert('Password errata');
+            alert('Login error');
           }
     };
 };
@@ -55,22 +55,24 @@ export const register = (user) => {
                   }
             );
     
-            if (!response.ok) {
-                throw new Error('Errore nella registrazione!');
-            }
+            //if (!response.ok) {
+            //    throw new Error('Errore nella registrazione!');
+            //}
             const data = await response.json();
             return data;
         }
         try {
             const authData = await sendRegisterRequest();
+            //const idToken = authData.idToken
+            const idToken = 'gadfsfhdsfhsdh';
             dispatch(
                 authReducer.register({
-                    token: authData.idToken
+                    token: idToken
               })
             );
-            localStorage.setItem('token', authData.idToken);
+            localStorage.setItem('token', idToken);
           } catch (error) {
-            //..
+            alert('Register error');
           }
     };
 };
@@ -91,9 +93,9 @@ export const changePassword = (user) => {
               }
           );
   
-          if (!response.ok) {
-              throw new Error('Errore nel cambio password!');
-          }
+          //if (!response.ok) {
+          //    throw new Error('Errore nel cambio password!');
+          //}
           const data = await response.json();
           return data;
       }
@@ -114,7 +116,6 @@ export const logout = () => {
     };
 };
 export const init = () => {
-    debugger;
     return async (dispatch) => {
         const tokenData = localStorage.getItem('token');
         dispatch(

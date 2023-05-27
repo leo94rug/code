@@ -3,13 +3,12 @@ import { useState, useRef } from 'react';
 import {login, register} from '../../store/auth-action';
 import classes from './AuthForm.module.css';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 
 const AuthForm = () => {
   const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
-  const history = useHistory();
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +38,7 @@ const AuthForm = () => {
         password : enteredPassword
       }));
     }
-    history.replace('/');
+    redirect('/');
   };
 
   return (
