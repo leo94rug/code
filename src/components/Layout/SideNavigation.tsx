@@ -9,8 +9,7 @@ import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
-
-export default function SideNavigation(props) {
+const SideNavigation:React.FC <{}> = (props) =>  {
   return (
     <Box sx={{ display: 'flex' }}>
         <List>

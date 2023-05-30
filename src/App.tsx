@@ -1,7 +1,6 @@
 import { init } from "./store/auth-action";
-import React, { useEffect } from 'react';
+import  { useEffect } from 'react';
 import { action as manipulateFeedbackAction } from './components/Feedback/FeedbackForm';
-
 import RootLayout from "./components/Layout/RootLayout";
 import FeedbacksRootLayout from "./components/Feedback/FeedbackRootLayout";
 import FeedbacksPage, { loader as feedbacksLoader }  from "./pages/FeedbackPage";

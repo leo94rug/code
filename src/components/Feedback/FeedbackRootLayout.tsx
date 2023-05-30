@@ -1,7 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-
-function FeedbacksRootLayout() {
+const FeedbacksRootLayout:React.FC <{}> = () =>   {
   return (
     <>
       <Outlet />

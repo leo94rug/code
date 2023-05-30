@@ -23,7 +23,7 @@ const sideBarButton = [
     component: <ChangePsw />,
   },
 ];
-const UserProfile = () => {
+const UserProfile:React.FC <{}> = () =>  {
   return (
     <section className={classes.profile}>
       <h3>Your User Profile</h3>

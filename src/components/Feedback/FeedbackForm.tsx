@@ -7,10 +7,16 @@ import {
   redirect
 } from 'react-router-dom';
 import { API_BASE_URL, API_VERSION } from '../../config/apiConfig';
-
 import classes from './FeedbackForm.module.css';
+import Feedback from '../../models/feedback';
 
-function FeedbackForm({ method, feedback }) {
+
+interface Props {
+  method: string;
+  feedback?: Feedback
+}
+
+const FeedbackForm:React.FC <Props> = ({ method, feedback }) =>    {
   const data = useActionData();
   const navigate = useNavigate();
   const navigation = useNavigation();

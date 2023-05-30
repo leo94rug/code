@@ -4,8 +4,7 @@ import classes from './Anagrafica.module.css';
 import { changePassword } from "../../store/auth-action";
 
 import { useSelector,useDispatch } from "react-redux";
-
-const Anagrafica = () => {
+const Anagrafica:React.FC <{}> = () =>   {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authSlice.token);
 

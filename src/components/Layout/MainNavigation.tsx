@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useSelector,useDispatch } from 'react-redux';
 import {logout} from '../../store/auth-action';
 
 import classes from './MainNavigation.module.css';
-
-const MainNavigation = () => {
+const MainNavigation:React.FC <{}> = () =>  {
   const dispatch = useDispatch();
 
   const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
@@ -15,24 +14,28 @@ const MainNavigation = () => {
 
   return (
     <header className={classes.header}>
-      <Link to='/'>
+      <NavLink to='/'>
         <div className={classes.logo}>React Auth</div>
-      </Link>
+      </NavLink>
       <nav>
         <ul>
           {!isLoggedIn && (
             <li>
-              <Link to='/auth'>Login</Link>
+              <NavLink to='/auth'>Login</NavLink>
             </li>
           )}
           {isLoggedIn && (
             <li>
-              <Link to='/profile'>Profile</Link>
+              <NavLink to='/profile'>Profile</NavLink>
             </li>
           )}
           {
             <li>
-              <Link to='/feedbacks'>Feedbacks</Link>
+              <NavLink to='/feedbacks'>Feedbacks</NavLink>
+            </li>
+          }{
+            <li>
+              <NavLink to='/feedbacks/new'>Nuovo feedback</NavLink>
             </li>
           }
           {isLoggedIn && (

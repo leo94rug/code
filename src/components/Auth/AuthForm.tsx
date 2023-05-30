@@ -4,8 +4,7 @@ import {login, register} from '../../store/auth-action';
 import classes from './AuthForm.module.css';
 import { useDispatch } from 'react-redux';
 import { redirect } from 'react-router-dom';
-
-const AuthForm = () => {
+const AuthForm:React.FC <{}> = () =>  {
   const dispatch = useDispatch();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();

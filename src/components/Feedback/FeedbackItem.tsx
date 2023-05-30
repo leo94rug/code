@@ -1,8 +1,7 @@
 import { Link, useSubmit } from 'react-router-dom';
 
 import classes from './FeedbackItem.module.css';
-
-function FeedbackItem({ feedback }) {
+const FeedbackItem:React.FC <{}> = ({ feedback }) =>   {
   const submit = useSubmit();
 
   function startDeleteHandler() {

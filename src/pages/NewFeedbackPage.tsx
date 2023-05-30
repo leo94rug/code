@@ -1,6 +1,6 @@
 import FeedbackForm from '../components/Feedback/FeedbackForm';
 
-function NewFeedbackPage() {
+const NewFeedbackPage:React.FC <{}> = () => {
   return <FeedbackForm method="post" />;
 }
 

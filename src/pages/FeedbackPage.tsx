@@ -4,7 +4,7 @@ import { API_BASE_URL, API_VERSION } from '../config/apiConfig';
 
 import FeedbacksList from '../components/Feedback/FeedbacksList';
 
-function FeedbacksPage() {
+const FeedbacksPage:React.FC <{}> = () => {
   const { feedbacks } = useLoaderData();
 
   return (

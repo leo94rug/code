@@ -5,8 +5,7 @@ import classes from './ChangePsw.module.css';
 import { changePassword } from "../../store/auth-action";
 
 import { useSelector,useDispatch } from "react-redux";
-
-const ChangePsw = () => {
+const ChangePsw:React.FC <{}> = () =>  {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.authSlice.token);
   const newPasswordInputRef = useRef();

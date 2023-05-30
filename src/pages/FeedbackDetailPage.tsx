@@ -9,8 +9,7 @@ import {
 import { API_BASE_URL, API_VERSION } from '../config/apiConfig';
 
 import FeedbackItem from '../components/Feedback/FeedbackItem';
-
-function FeedbackDetailPage() {
+const FeedbackDetailPage:React.FC <{}> = () =>  {
   const { feedback } = useRouteLoaderData('feedback-detail');
 debugger;
   return (

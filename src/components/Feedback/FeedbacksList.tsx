@@ -2,8 +2,7 @@
 import { Link } from 'react-router-dom';
 
 import classes from './FeedbacksList.module.css';
-
-function FeedbacksList({feedbacks}) {
+const FeedbacksList:React.FC <{}> = ({feedbacks}) =>   {
   // const events = useLoaderData();
 
   return (
