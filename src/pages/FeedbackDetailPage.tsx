@@ -5,13 +5,16 @@ import {
   redirect,
   defer,
   Await,
+  LoaderFunction,
+  LoaderFunctionArgs,
 } from 'react-router-dom';
 import { API_BASE_URL, API_VERSION } from '../config/apiConfig';
-
 import FeedbackItem from '../components/Feedback/FeedbackItem';
+import FeedbackParam from '../models/types/FeedbackURLParam';
+import Feedback from '../models/feedback';
+
 const FeedbackDetailPage:React.FC <{}> = () =>  {
-  const { feedback } = useRouteLoaderData('feedback-detail');
-debugger;
+  const { feedback } = useRouteLoaderData('feedback-detail') as {feedback:Feedback};
   return (
     <>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
@@ -25,9 +28,8 @@ debugger;
 
 export default FeedbackDetailPage;
 
-async function loadFeedback(id) {
+async function loadFeedback(id : Feedback["id"]|undefined) : Promise<Feedback> {
   const response = await fetch(`${API_BASE_URL}/feedback/${id}`);
-debugger;
   if (!response.ok) {
     throw json(
       { message: 'Could not fetch details for selected feedback.' },
@@ -41,7 +43,7 @@ debugger;
   }
 }
 
-async function loadFeedbacks() {
+async function loadFeedbacks(): Promise<Feedback[]>  {
   const response = await fetch(`${API_BASE_URL}/feedback`);
 
   if (!response.ok) {
@@ -61,7 +63,7 @@ async function loadFeedbacks() {
   }
 }
 
-export async function loader({ request, params }) {
+export async function loader({ request, params }: LoaderFunctionArgs) {
   const id = params.feedbackId;
 
   return defer({
@@ -70,7 +72,7 @@ export async function loader({ request, params }) {
   });
 }
 
-export async function action({ params, request }) {
+export async function action({ params, request }: LoaderFunctionArgs) {
   const id = params.feedbackId;
   const response = await fetch(`${API_BASE_URL}/feedback/${id}`, {
     method: request.method,

@@ -4,20 +4,23 @@ import {
   useNavigation,
   useActionData,
   json,
-  redirect
+  redirect,
+  LoaderFunctionArgs
 } from 'react-router-dom';
 import { API_BASE_URL, API_VERSION } from '../../config/apiConfig';
 import classes from './FeedbackForm.module.css';
 import Feedback from '../../models/feedback';
+import ActionData from '../../models/interfaces/ActionData';
+import FeedbackParam from '../../models/types/FeedbackURLParam';
+import FeedbackNullableProps from '../../models/interfaces/FeedbackNullableProps';
 
 
-interface Props {
-  method: string;
-  feedback?: Feedback
+interface FeedbackFormProps extends FeedbackNullableProps{
+  method: "get" | "post" | "put" | "delete" | "patch" | undefined;
 }
 
-const FeedbackForm:React.FC <Props> = ({ method, feedback }) =>    {
-  const data = useActionData();
+const FeedbackForm:React.FC <FeedbackFormProps> = ({ method, feedback }) =>    {
+    const data = useActionData() as ActionData;
   const navigate = useNavigate();
   const navigation = useNavigation();
 
@@ -26,7 +29,6 @@ const FeedbackForm:React.FC <Props> = ({ method, feedback }) =>    {
   function cancelHandler() {
     navigate('..');
   }
-debugger;
   return (
     <Form method={method} className={classes.form}>
       {data && data.errors && (
@@ -61,7 +63,7 @@ debugger;
         <textarea
           id="description"
           name="description"
-          rows="5"
+          rows= {5}
           required
           defaultValue={feedback ? feedback.description : ''}
         />
@@ -80,7 +82,7 @@ debugger;
 
 export default FeedbackForm;
 
-export async function action({ request, params }) {
+export async function action({ request, params }: LoaderFunctionArgs) {
   const method = request.method;
   const data = await request.formData();
 

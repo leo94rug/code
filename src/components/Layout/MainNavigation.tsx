@@ -6,10 +6,10 @@ import classes from './MainNavigation.module.css';
 const MainNavigation:React.FC <{}> = () =>  {
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
+  //const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
 
   const logoutHandler = () => {
-    dispatch(logout());
+    //dispatch(logout());
   };
 
   return (
@@ -19,16 +19,16 @@ const MainNavigation:React.FC <{}> = () =>  {
       </NavLink>
       <nav>
         <ul>
-          {!isLoggedIn && (
+          {
             <li>
               <NavLink to='/auth'>Login</NavLink>
             </li>
-          )}
-          {isLoggedIn && (
+          }
+          {
             <li>
               <NavLink to='/profile'>Profile</NavLink>
             </li>
-          )}
+          }
           {
             <li>
               <NavLink to='/feedbacks'>Feedbacks</NavLink>
@@ -38,11 +38,11 @@ const MainNavigation:React.FC <{}> = () =>  {
               <NavLink to='/feedbacks/new'>Nuovo feedback</NavLink>
             </li>
           }
-          {isLoggedIn && (
+          {
             <li>
               <button onClick={logoutHandler}>Logout</button>
             </li>
-          )}
+          }
         </ul>
       </nav>
     </header>

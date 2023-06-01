@@ -1,17 +1,14 @@
-import { Link, useSubmit } from 'react-router-dom';
+import { NavLink, useSubmit } from 'react-router-dom';
 
 import classes from './FeedbackItem.module.css';
-const FeedbackItem:React.FC <{}> = ({ feedback }) =>   {
+import FeedbackProps from '../../models/interfaces/FeedbackProps';
+
+const FeedbackItem:React.FC <FeedbackProps> = ({ feedback }) =>   {
   const submit = useSubmit();
 
   function startDeleteHandler() {
-    const proceed = window.confirm('Are you sure?');
-
-    if (proceed) {
       submit(null, { method: 'delete' });
-    }
   }
-  debugger;
   return (
     
     <article className={classes.feedback}>
@@ -19,7 +16,7 @@ const FeedbackItem:React.FC <{}> = ({ feedback }) =>   {
       <time>{feedback.date}</time>
       <p>{feedback.description}</p>
       <menu className={classes.actions}>
-        <Link to="edit">Edit</Link>
+        <NavLink to="edit">Edit</NavLink>
         <button onClick={startDeleteHandler}>Delete</button>
       </menu>
     </article>

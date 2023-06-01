@@ -10,12 +10,11 @@ import FeedbackDetailPage, {
   loader as feedbackDetailLoader,
   action as deleteFeedbackAction,
 } from './pages/FeedbackDetailPage'; 
-import UserProfile from "./components/Profile/UserProfile";
-import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
 import { useSelector, useDispatch } from "react-redux";
 import ErrorPage from "./components/Layout/ErrorPage";
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {  RouterProvider, createBrowserRouter } from 'react-router-dom';
+
 
 const router = createBrowserRouter([
   {
@@ -36,7 +35,7 @@ const router = createBrowserRouter([
           {
             path: ':feedbackId',
             id: 'feedback-detail',
-            loader: feedbackDetailLoader,
+            loader: feedbackDetailLoader  ,
             children: [
               {
                 index: true,
@@ -62,16 +61,14 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
+  const isLoggedIn = useSelector((state: any) => state.authSlice.isLoggedIn);
   const dispatch = useDispatch();
 
-  useEffect(() => {
+ /* useEffect(() => {
     dispatch(init());
-  }, [dispatch]);
+  }, [dispatch]);*/
   return (
-    <RouterProvider router={router} >
-
-    </RouterProvider>
+    <RouterProvider router={router} />
   );
 }
 

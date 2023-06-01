@@ -1,10 +1,12 @@
 import { useRouteLoaderData } from 'react-router-dom';
 
 import FeedbackForm from '../components/Feedback/FeedbackForm';
-const EditFeedbackPage:React.FC <{}> = () =>  {
-  const data = useRouteLoaderData('feedback-detail');
+import Feedback from '../models/feedback';
 
-  return <FeedbackForm method="patch" feedback={data.feedback} />;
+const EditFeedbackPage: React.FC<{}> = () => {
+  const feedback = useRouteLoaderData('feedback-detail') as Feedback;
+
+  return <FeedbackForm method="patch" feedback={feedback} />;
 }
 
 export default EditFeedbackPage;

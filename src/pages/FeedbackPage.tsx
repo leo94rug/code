@@ -3,9 +3,11 @@ import { useLoaderData, json, defer, Await } from 'react-router-dom';
 import { API_BASE_URL, API_VERSION } from '../config/apiConfig';
 
 import FeedbacksList from '../components/Feedback/FeedbacksList';
+import LoaderDataFeedbacks from '../models/interfaces/loader/LoaderDataFeedbacks';
+
 
 const FeedbacksPage:React.FC <{}> = () => {
-  const { feedbacks } = useLoaderData();
+  const { feedbacks } = useLoaderData() as LoaderDataFeedbacks;
 
   return (
     <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
@@ -19,7 +21,6 @@ const FeedbacksPage:React.FC <{}> = () => {
 export default FeedbacksPage;
 
 async function loadFeedbacks() {
-  debugger;
   const response = await fetch(`${API_BASE_URL}/feedback`);
 
   if (!response.ok) {

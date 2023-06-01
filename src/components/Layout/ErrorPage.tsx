@@ -1,9 +1,18 @@
 import { useRouteError } from 'react-router-dom';
 import MainNavigation from './MainNavigation';
-
 import PageContent from './PageContent';
+
+interface ErrorData {
+  message: string;
+}
+
+interface ErrorStatus {
+  status: number;
+  data: ErrorData;
+}
+
 const ErrorPage:React.FC <{}> = () =>   {
-  const error = useRouteError();
+  const error: ErrorStatus = useRouteError() as ErrorStatus;
 
   let title = 'An error occurred!';
   let message = 'Something went wrong!';
