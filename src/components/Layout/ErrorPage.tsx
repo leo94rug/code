@@ -12,7 +12,7 @@ interface ErrorStatus {
 }
 
 const ErrorPage:React.FC <{}> = () =>   {
-  const error: ErrorStatus = useRouteError() as ErrorStatus;
+  const error = useRouteError() as ErrorStatus;
 
   let title = 'An error occurred!';
   let message = 'Something went wrong!';

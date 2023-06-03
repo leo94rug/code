@@ -9,9 +9,7 @@ import {
 } from 'react-router-dom';
 import { API_BASE_URL, API_VERSION } from '../../config/apiConfig';
 import classes from './FeedbackForm.module.css';
-import Feedback from '../../models/feedback';
 import ActionData from '../../models/interfaces/ActionData';
-import FeedbackParam from '../../models/types/FeedbackURLParam';
 import FeedbackNullableProps from '../../models/interfaces/FeedbackNullableProps';
 
 

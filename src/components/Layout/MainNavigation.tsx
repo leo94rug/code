@@ -1,16 +1,8 @@
-import { NavLink } from 'react-router-dom';
-import { useSelector,useDispatch } from 'react-redux';
-import {logout} from '../../store/auth-action';
+import { Form, NavLink, useRouteLoaderData } from 'react-router-dom';
 
 import classes from './MainNavigation.module.css';
-const MainNavigation:React.FC <{}> = () =>  {
-  const dispatch = useDispatch();
-
-  //const isLoggedIn = useSelector((state) => state.authSlice.isLoggedIn);
-
-  const logoutHandler = () => {
-    //dispatch(logout());
-  };
+const MainNavigation: React.FC<{}> = () => {
+  const token = useRouteLoaderData('root') as string;
 
   return (
     <header className={classes.header}>
@@ -20,29 +12,39 @@ const MainNavigation:React.FC <{}> = () =>  {
       <nav>
         <ul>
           {
-            <li>
-              <NavLink to='/auth'>Login</NavLink>
-            </li>
-          }
-          {
-            <li>
-              <NavLink to='/profile'>Profile</NavLink>
-            </li>
-          }
-          {
-            <li>
-              <NavLink to='/feedbacks'>Feedbacks</NavLink>
-            </li>
+            token && (<li>
+              <NavLink to='/feedbacks' className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }>Feedbacks</NavLink>
+            </li>)
           }{
-            <li>
-              <NavLink to='/feedbacks/new'>Nuovo feedback</NavLink>
-            </li>
+            token && (
+              <li>
+                <NavLink to='/feedbacks/new' className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }>Nuovo feedback</NavLink>
+              </li>
+            )
           }
-          {
+          {!token && (
             <li>
-              <button onClick={logoutHandler}>Logout</button>
+              <NavLink
+                to="/auth?mode=login"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Login
+              </NavLink>
             </li>
-          }
+          )}
+          {token && (
+            <li>
+              <Form action="/logout" method="post">
+                <button>Logout</button>
+              </Form>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

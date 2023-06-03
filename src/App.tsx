@@ -14,13 +14,19 @@ import HomePage from "./pages/HomePage";
 import { useSelector, useDispatch } from "react-redux";
 import ErrorPage from "./components/Layout/ErrorPage";
 import {  RouterProvider, createBrowserRouter } from 'react-router-dom';
-
+import { tokenLoader } from "./util/util";
+import { action as logoutAction } from './pages/Logout';
+import AuthenticationPage, {
+  action as authAction,
+} from './pages/Authentication';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: 'root',
+    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -55,7 +61,16 @@ const router = createBrowserRouter([
             action: manipulateFeedbackAction,
           },
         ],
-      }
+      },
+      {
+        path: 'auth',
+        element: <AuthenticationPage />,
+        action: authAction,
+      },
+      {
+        path: 'logout',
+        action: logoutAction,
+      },
     ],
   },
 ]);
