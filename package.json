@@ -8,7 +8,6 @@
     "@mui/material": "^5.10.7",
     "@reduxjs/toolkit": "^1.8.5",
     "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "@types/jest": "^29.5.1",
     "@types/node": "^20.2.5",
@@ -19,7 +18,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.1",
     "react-scripts": "^5.0.1",
-    "typescript": "^5.0.4",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -49,5 +48,8 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0"
+  }
 }

@@ -1,10 +1,7 @@
-import { init } from "./store/auth-action";
-import  { useEffect } from 'react';
-import { action as manipulateFeedbackAction } from './components/Feedback/FeedbackForm';
 import RootLayout from "./components/Layout/RootLayout";
 import FeedbacksRootLayout from "./components/Feedback/FeedbackRootLayout";
 import FeedbacksPage, { loader as feedbacksLoader }  from "./pages/FeedbackPage";
-import EditFeedbackPage from "./pages/EditFeedbackPage";
+import EditFeedbackPage, { action as manipulateFeedbackAction }  from "./pages/EditFeedbackPage";
 import NewFeedbackPage from "./pages/NewFeedbackPage";
 import FeedbackDetailPage, {
   loader as feedbackDetailLoader,
@@ -19,8 +16,7 @@ import { action as logoutAction } from './pages/Logout';
 import AuthenticationPage, {
   action as authAction,
 } from './pages/Authentication';
-
-const router = createBrowserRouter([
+export const routesConfig = [
   {
     path: '/',
     element: <RootLayout />,
@@ -73,7 +69,8 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+const router = createBrowserRouter(routesConfig);
 
 function App() {
   const isLoggedIn = useSelector((state: any) => state.authSlice.isLoggedIn);
