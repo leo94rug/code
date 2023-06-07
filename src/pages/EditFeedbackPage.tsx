@@ -6,11 +6,12 @@ import { API_BASE_URL } from '../config/apiConfig';
 
 const EditFeedbackPage: React.FC<{}> = () => {
   const {feedback} = useRouteLoaderData('feedback-detail')  as {feedback:Feedback};;
+
   return (
     <>
       <Suspense fallback={<p style={{ textAlign: 'center' }}>Loading...</p>}>
         <Await resolve={feedback}>
-          {(loadedFeedback) => <FeedbackForm method="patch" feedback={loadedFeedback} />}
+          {(loadedFeedback) => <FeedbackForm method="patch" feedback={loadedFeedback}/>}
         </Await>
       </Suspense>
     </>

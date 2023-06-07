@@ -1,67 +1,66 @@
 import {
   Form,
+  useActionData,
   useNavigate,
-  useNavigation,
-  useActionData
+  useNavigation
 } from 'react-router-dom';
 import classes from './FeedbackForm.module.css';
-import ActionData from '../../models/interfaces/ActionData';
 import FeedbackNullableProps from '../../models/interfaces/FeedbackNullableProps';
+import ErrorsViewer from '../ErrorsViewer';
+import ErrorProps from '../../models/types/ErrorProps';
+import InputField from "../../models/types/InputField";
+import InputComponentList from '../Layout/InputComponentList';
+import ActionData from '../../models/interfaces/GenericError';
 
-
-interface FeedbackFormProps extends FeedbackNullableProps{
+type FormMethod = {
   method: "get" | "post" | "put" | "delete" | "patch" | undefined;
 }
 
-const FeedbackForm:React.FC <FeedbackFormProps> = ({ method, feedback }) =>    {
-    const data = useActionData() as ActionData;
-  const navigate = useNavigate();
+
+type AllProps = FormMethod & FeedbackNullableProps ;
+
+
+const FeedbackForm: React.FC<AllProps> = ({ method, feedback}) => {
+  const feedbackInputField: InputField[] = [
+    {
+      id: "title",
+      type: "text",
+      name: "title",
+      required: true,
+      defaultValue: feedback?.title,
+      component: "input",
+      label: "Title"
+    }, {
+      id: "date",
+      type: "date",
+      name: "date",
+      required: true,
+      defaultValue: feedback?.date,
+      component: "input",
+      label: "Date"
+    }, {
+      id: "description",
+      type: "text",
+      name: "description",
+      required: true,
+      defaultValue: feedback?.description,
+      rows: 5,
+      component: "textArea",
+      label: "Description"
+    }
+  ];
+  const actionData = useActionData() as ActionData;
   const navigation = useNavigation();
 
   const isSubmitting = navigation.state === 'submitting';
-
+  const navigate = useNavigate();
   function cancelHandler() {
     navigate('..');
   }
   return (
     <Form method={method} className={classes.form}>
-      {data && data.errors && (
-        <ul>
-          {Object.values(data.errors).map((err) => (
-            <li key={err}>{err}</li>
-          ))}
-        </ul>
-      )}
-      <p>
-        <label htmlFor="title">Title</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          required
-          defaultValue={feedback ? feedback.title : ''}
-        />
-      </p>
-      <p>
-        <label htmlFor="date">Date</label>
-        <input
-          id="date"
-          type="date"
-          name="date"
-          required
-          defaultValue={feedback ? feedback.date : ''}
-        />
-      </p>
-      <p>
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          rows= {5}
-          required
-          defaultValue={feedback ? feedback.description : ''}
-        />
-      </p>
+      <ErrorsViewer error={actionData} />
+      <InputComponentList inputFields={feedbackInputField} />
       <div className={classes.actions}>
         <button type="button" onClick={cancelHandler} disabled={isSubmitting}>
           Cancel

@@ -1,6 +1,6 @@
-interface ActionData {
+interface GenericError {
     message?: string;
     errors?: { [key: string]: string };
     // Altre proprietà se presenti nella risposta del server
   }
-  export default ActionData;
+  export default GenericError;

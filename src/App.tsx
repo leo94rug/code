@@ -13,9 +13,9 @@ import ErrorPage from "./components/Layout/ErrorPage";
 import {  RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { tokenLoader } from "./util/util";
 import { action as logoutAction } from './pages/Logout';
-import AuthenticationPage, {
+import AuthPage, {
   action as authAction,
-} from './pages/Authentication';
+} from './pages/AuthPage';
 export const routesConfig = [
   {
     path: '/',
@@ -60,7 +60,7 @@ export const routesConfig = [
       },
       {
         path: 'auth',
-        element: <AuthenticationPage />,
+        element: <AuthPage />,
         action: authAction,
       },
       {
@@ -73,12 +73,6 @@ export const routesConfig = [
 const router = createBrowserRouter(routesConfig);
 
 function App() {
-  const isLoggedIn = useSelector((state: any) => state.authSlice.isLoggedIn);
-  const dispatch = useDispatch();
-
- /* useEffect(() => {
-    dispatch(init());
-  }, [dispatch]);*/
   return (
     <RouterProvider router={router} />
   );
