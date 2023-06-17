@@ -3,11 +3,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './FeedbacksList.module.css';
 import Feedback from '../../models/feedback';
 
-interface FeedbacksListProps {
-  feedbacks: Feedback[];
-}
-
-const FeedbacksList:React.FC <FeedbacksListProps> = ({feedbacks}) =>   {
+const FeedbacksList:React.FC <{feedbacks: Feedback[]}> = ({feedbacks}) =>   {
 
   return (
     <div className={classes.feedbacks}>
